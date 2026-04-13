@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import timedelta
 import logging
+import time
 
 import aiohttp
 
@@ -71,9 +72,21 @@ class WebexStatusCoordinator(DataUpdateCoordinator):
         )
         self._bot_token = bot_token
         self._person_id = person_id
+        self._rate_limited_until: float = 0
 
     async def _async_update_data(self) -> dict:
         """Fetch data from the Webex People API."""
+        # Respect rate limit back-off window
+        now = time.monotonic()
+        if now < self._rate_limited_until:
+            wait = int(self._rate_limited_until - now)
+            _LOGGER.debug("Rate limit back-off active, skipping for %ss", wait)
+            if self.data is not None:
+                return self.data
+            raise UpdateFailed(
+                f"Rate limited by Webex API, retrying in {wait}s"
+            )
+
         session = async_get_clientsession(self.hass)
         headers = {"Authorization": f"Bearer {self._bot_token}"}
         url = f"{WEBEX_API_BASE}/people/{self._person_id}"
@@ -81,7 +94,19 @@ class WebexStatusCoordinator(DataUpdateCoordinator):
         try:
             async with session.get(url, headers=headers) as response:
                 if response.status == 429:
-                    raise UpdateFailed("Rate limited by Webex API")
+                    retry_after = int(
+                        response.headers.get("Retry-After", DEFAULT_SCAN_INTERVAL)
+                    )
+                    self._rate_limited_until = time.monotonic() + retry_after
+                    _LOGGER.warning(
+                        "Webex API rate limit hit, backing off for %ss",
+                        retry_after,
+                    )
+                    if self.data is not None:
+                        return self.data
+                    raise UpdateFailed(
+                        f"Rate limited by Webex API, retrying in {retry_after}s"
+                    )
                 if response.status != 200:
                     raise UpdateFailed(
                         f"Webex API returned HTTP {response.status}"
