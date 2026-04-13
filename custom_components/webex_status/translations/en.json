@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Set up Webex Status",
-        "description": "Enter your Webex Bot token and your Webex People API person ID. See the [setup guide](https://github.com/owenmettam/HomeAssistant-WebexStatus) for instructions on obtaining these values.",
+        "description": "Enter your Webex Bot token and your Webex People API person ID. See the [setup guide]({setup_guide_url}) for instructions on obtaining these values.",
         "data": {
           "bot_token": "Bot Access Token",
           "person_id": "Person ID (encoded UUID)"

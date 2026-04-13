@@ -75,4 +75,7 @@ class WebexStatusConfigFlow(ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=STEP_USER_DATA_SCHEMA,
             errors=errors,
+            description_placeholders={
+                "setup_guide_url": "https://github.com/owenmettam/HomeAssistant-WebexStatus"
+            },
         )
