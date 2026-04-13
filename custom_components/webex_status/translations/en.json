@@ -1,0 +1,28 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Webex Status",
+        "description": "Enter your Webex Bot token and your Webex People API person ID. See the [setup guide](https://github.com/owenmettam/HomeAssistant-WebexStatus) for instructions on obtaining these values.",
+        "data": {
+          "bot_token": "Bot Access Token",
+          "person_id": "Person ID (encoded UUID)"
+        },
+        "data_description": {
+          "bot_token": "The access token from your Webex Bot (valid for ~100 years).",
+          "person_id": "Your encoded UUID from the Webex People API 'Get My Own Details' endpoint."
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid bot token. Please check and try again.",
+      "person_not_found": "Person ID not found. Please verify the encoded UUID.",
+      "rate_limited": "Rate limited by Webex API. Please wait a moment and try again.",
+      "cannot_connect": "Unable to connect to the Webex API. Check your network.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This Webex user is already configured."
+    }
+  }
+}
