@@ -115,7 +115,7 @@ Replace `YOURNAME_webex_status` with the actual entity ID created by the integra
 A: As configured, this is designed to get _your_ Webex status. Depending on the admin scopes assigned to your Webex account, it is possible to get additional users by leveraging the People API, however this is not recommended.
 
 **Q: I keep getting a status of "unknown", what does this mean?**\
-A: This is likely due to a misconfiguration, such as missing the correct Webex Bot token, or not copying the correct People API UUID from the Webex Developer portal. Try removing and re-adding the integration with the correct values.
+A: This is likely due to a misconfiguration, such as missing the correct Webex Bot token, or not copying the correct People API UUID from the Webex Developer portal. Try removing and re-adding the integration with the correct values. Additionally, there is open issue [#1](https://github.com/owenmettam/HomeAssistant-WebexStatus/issues/1) regarding this.
 
 **Q: I keep getting a status of "pending", what does this mean?**\
 A: This is due to your Webex account not having been signed into ever before, and as a result never got a true Webex status configured. Sign into the Webex application to ensure that a status can be reflected. Note that this status is _not_ the same as "unknown".
