@@ -89,6 +89,8 @@ You need two values to configure the integration:
 
 ## Dashboard Cards
 
+By default, an entity is available with your Webex profile picture, name, and status.
+
 You can display the status using any card type. Here is an example using [Mushroom Cards](https://github.com/piitaya/lovelace-mushroom) (available via HACS):
 
 ```yaml
@@ -112,7 +114,7 @@ Replace `YOURNAME_webex_status` with the actual entity ID created by the integra
 ## FAQs
 
 **Q: Who can I get the status of?**\
-A: As configured, this is designed to get _your_ Webex status. Depending on the admin scopes assigned to your Webex account, it is possible to get additional users by leveraging the People API, however this is not recommended.
+A: As configured, this is designed to get _your_ Webex status. Depending on the admin scopes assigned to your Webex account, it is possible to get additional users in your Webex organization by leveraging the People API, however this is not recommended.
 
 **Q: I keep getting a status of "unknown", what does this mean?**\
 A: This is likely due to a misconfiguration, such as missing the correct Webex Bot token, or not copying the correct People API UUID from the Webex Developer portal. Try removing and re-adding the integration with the correct values. Additionally, there is open issue [#1](https://github.com/owenmettam/HomeAssistant-WebexStatus/issues/1) regarding this.
