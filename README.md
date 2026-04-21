@@ -4,6 +4,8 @@
 
 A custom Home Assistant integration that exposes your Webex status as a sensor entity. Know when someone in your household is in a meeting, on a call, or presenting — right from the Home Assistant dashboard.
 
+<img width="1200" height="600" alt="owenmettam-Sharable-Profile)-Horizontal" src="https://github.com/user-attachments/assets/9e5011f2-924e-4b09-a8e0-753f617e7990" />
+
 ## Preview
 
 This is how the integration can look inside of your Home Assistant homepage.
